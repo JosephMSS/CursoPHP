@@ -1,34 +1,60 @@
-
 <?php
-$jobs = [
-    [
-        'title' => 'PHP Developer',
-    'description' => 'This is an awesome job!!!' ,
-    'visible'=>true,
-    'months'=>12
-    
-  ],
-  [
-      'title' => 'Python Dev',
-    'visible'=>true,
-    'months'=>18
+class Job{
+    private $title;
+    public $description;
+    public $visible;
+    public $months;
 
-  ],
-  [
-      'title' => 'Devops',
-    'visible'=>true,
-    'months'=>24
-  ],
-  [
-      'title' => 'Node Devs',
-    'visible'=>true,
-    'months'=>1
-  ],
-  [
-      'title' => 'Frontend Dev',
-    'visible'=>true,
-    'months'=>2
-  ]
+    public function setTitle($var_T)
+    {
+        $this->title=$var_T;//recordar que las propiedades de un objeto  no llevan el signo de dolar al usarlas
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    
+}
+// $job1=new Job();
+// $job1->title=;
+// $job1->description=;
+// $job1->visible=;
+// $job1->months=;
+$job1=new Job();
+$job1->setTitle('PHP Developer');
+$job1->description='This is an awesome job!!!';
+$job1->visible=true;
+$job1->months=12;
+$jobs = [
+    $job1
+//     [
+//         'title' => 'PHP Developer',
+//     'description' => 'This is an awesome job!!!' ,
+//     'visible'=>true,
+//     'months'=>12
+    
+//   ],
+//   [
+//       'title' => 'Python Dev',
+//     'visible'=>true,
+//     'months'=>18
+
+//   ],
+//   [
+//       'title' => 'Devops',
+//     'visible'=>true,
+//     'months'=>24
+//   ],
+//   [
+//       'title' => 'Node Devs',
+//     'visible'=>true,
+//     'months'=>1
+//   ],
+//   [
+//       'title' => 'Frontend Dev',
+//     'visible'=>true,
+//     'months'=>2
+//   ]
 ];
 function getDuration($months)
 {
@@ -46,16 +72,16 @@ function getDuration($months)
 }
 function printJob($job)
 {
-  if($job['visible']==false){
+  if($job->visible==false){
     return;
   }
   echo '<li class="work-position">';
-               echo '<h5>'.$job['title'].'</h5>';
-               if(isset($job['description']))
+               echo '<h5>'.$job->getTitle().'</h5>';
+               if(isset($job->description))
                {
-                 echo '<p>'.$job['description'].'</p>';
+                 echo '<p>'.$job->description.'</p>';
                 }
-               echo '<p>'.getDuration($job['months']).'</p>';
+               echo '<p>'.getDuration($job->months).'</p>';
 
                echo '<strong>Achievements:</strong>';
                echo '<ul>';
