@@ -3,18 +3,69 @@ $name = 'Hector Benitez';
 $jobs = [
   [
     'title' => 'PHP Developer',
-    'description' => 'This is an awesome job!!!'
+    'description' => 'This is an awesome job!!!' ,
+    'visible'=>true,
+    'months'=>12
+    
   ],
   [
     'title' => 'Python Dev',
+    'visible'=>true,
+    'months'=>18
+
   ],
   [
-    'title' => 'Devops'
+    'title' => 'Devops',
+    'visible'=>true,
+    'months'=>24
+  ],
+  [
+    'title' => 'Node Devs',
+    'visible'=>true,
+    'months'=>1
+  ],
+  [
+    'title' => 'Frontend Dev',
+    'visible'=>true,
+    'months'=>2
   ]
 ];
+function getDuration($months)
+{
+  $msj=$months.'Months';
+  
+  if($months>12)
+  {
+    $msj=floor($months/12).'years, '.($months%12).'Months.';
 
+  }if(($months%12)==0)
+  {
+    $msj= floor($months/12).' year';
+  }
+  return $msj;
+}
+function printJob($job)
+{
+  if($job['visible']==false){
+    return;
+  }
+  echo '<li class="work-position">';
+               echo '<h5>'.$job['title'].'</h5>';
+               if(isset($job['description']))
+               {
+                 echo '<p>'.$job['description'].'</p>';
+                }
+               echo '<p>'.getDuration($job['months']).'</p>';
+
+               echo '<strong>Achievements:</strong>';
+               echo '<ul>';
+                  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                  echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                echo'</ul>';
+              echo'</li>';
+}
 ?>
-
 <!doctype html>
 <html lang="en">
 
@@ -62,37 +113,17 @@ $jobs = [
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
           <ul>
-            <li class="work-position">
-              <h5><?php echo $jobs[0]['title']; ?></h5>
-              <p><?php echo $jobs[0]['description']; ?></p>
-              <strong>Achievements:</strong>
-              <ul>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-              </ul>
-            </li>
-            <li class="work-position">
-                <h5><?php echo $jobs[1]['title']; ?></h5>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                <strong>Achievements:</strong>
-                <ul>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                </ul>
-              </li>
-              <li class="work-position">
-                  <h5><?php echo $jobs[2]['title']; ?></h5>
-                  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi sapiente sed pariatur sint exercitationem eos expedita eveniet veniam ullam, quia neque facilis dicta voluptatibus. Eveniet doloremque ipsum itaque obcaecati nihil.</p>
-                  <strong>Achievements:</strong>
-                  <ul>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                    <li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>
-                  </ul>
-                </li>
-          </ul>
+           <?php
+              for($idx=0;$idx<count($jobs);$idx++)
+              {
+                // if($jobs[$idx]['visible']==false)
+                // {
+                //   continue;// si es false pasa a la siguiente operacion
+                // }
+                printJob($jobs[$idx]);
+
+              }
+           ?>
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>
