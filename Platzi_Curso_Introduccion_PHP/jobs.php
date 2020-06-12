@@ -1,85 +1,22 @@
 <?php
-class Job{
-    private $title;
-    public $description;
-    public $visible;
-    public $months;
-    public function __construct($title,$description,$visible,$months)
-    {
-        $this->setTitle($title);
-        $this->setDescription($description);
-        $this->setVisible($visible);
-        $this->setMonths($months)   ;
-    }
-    public function setTitle($title)
-    {
-        $this->title=$title;//recordar que las propiedades de un objeto  no llevan el signo de dolar al usarlas
-    }
-    public function getTitle()
-    {
-        return $this->title;
-    }
-    public function setDescription($description)
-    {
-        $this->description=$description;//recordar que las propiedades de un objeto  no llevan el signo de dolar al usarlas
-    }
-    public function getdescription()
-    {
-        return $this->description;
-    }
-    public function setVisible($visible){
-        $this->visible=$visible;
-    }    
-    public function getVisible()
-    {
-        return $this->visible;
-    }
-    public function setMonths($months)
-    {
-        $this->months=$months;
-    }
-    public function getMonths()
-    {
-        return  $this->months;
-    }
-}
-$job1=new Job();
-$job1->setTitle('PHP Developer');
-$job1->setDescription('This is an awesome job!!!');
+require_once 'app\Models\Job.php';
+require_once 'app\Models\Project.php';
+$job1=new Job('PHP Developer','This is an awesome job!!!'/*,true,12*/);
+// $job1->setTitle('PHP Developer');
+// $job1->setDescription('This is an awesome job!!!');
 $job1->setvisible(true);
 $job1->setMonths(12);
-$job2=new Job('Nove Dev',' ',true,18);
+$job2=new Job('Nove Dev',' '/*,true,18*/);
+$job2->setvisible(true);
+$job2->setMonths(18);
+$project1=new Project('Proyect 1','Decription1');
+$project1->setvisible(true);
 $jobs = [
     $job1,
     $job2
-//     [
-//         'title' => 'PHP Developer',
-//     'description' => 'This is an awesome job!!!' ,
-//     'visible'=>true,
-//     'months'=>12
-    
-//   ],
-//   [
-//       'title' => 'Python Dev',
-//     'visible'=>true,
-//     'months'=>18
-
-//   ],
-//   [
-//       'title' => 'Devops',
-//     'visible'=>true,
-//     'months'=>24
-//   ],
-//   [
-//       'title' => 'Node Devs',
-//     'visible'=>true,
-//     'months'=>1
-//   ],
-//   [
-//       'title' => 'Frontend Dev',
-//     'visible'=>true,
-//     'months'=>2
-//   ]
+];
+$projects=[
+  $project1
 ];
 function getDuration($months)
 {
@@ -95,7 +32,7 @@ function getDuration($months)
   }
   return $msj;
 }
-function printJob($job)
+function printElement($job)
 {
   if($job->getVisible()==false){
     return;
