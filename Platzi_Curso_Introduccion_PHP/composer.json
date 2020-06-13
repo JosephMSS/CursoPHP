@@ -1,0 +1,9 @@
+{
+ "_comment":"esto sirve para poder pasar los namespaces y asi cargarlos demanera automaticacargando los a=namespace App y buscando los que sean hijos de app/",   
+    "autoload": {
+        "psr-4":{
+            "App\\":"app/"
+        }
+    },
+    "require": {}
+}
