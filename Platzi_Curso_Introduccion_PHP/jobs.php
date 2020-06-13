@@ -1,6 +1,16 @@
 <?php
 require_once 'app\Models\Job.php';
 require_once 'app\Models\Project.php';
+require_once 'app\Models\Printable.php';
+require_once 'lib1\Project.php';
+//En caso de que se requiera usar namespaces se debe declarar en todas las clases y posteriormente se usa el use en donde se requiere usar las clases
+// Recordar que esta manera solo funciona para php 7 en adelante
+// use App\Models\{Job, Project, Printable};
+use App\Models\Job;
+use App\Models\Project;
+use App\Models\Printable;
+// use App\Models\Lib1\Project;
+ $jobLib=new Lib1\Project;
 $job1=new Job('PHP Developer','This is an awesome job!!!'/*,true,12*/);
 // $job1->setTitle('PHP Developer');
 // $job1->setDescription('This is an awesome job!!!');
@@ -32,7 +42,7 @@ function getDuration($months)
   }
   return $msj;
 }
-function printElement($job)
+function printElement(Printable $job)
 {
   if($job->getVisible()==false){
     return;

@@ -1,5 +1,8 @@
 <?php
-class BasicElement{
+namespace App\Models;
+require_once 'Printable.php';
+
+class BasicElement implements Printable{
     private $title;
     public $description;
     public $visible;
@@ -23,7 +26,7 @@ class BasicElement{
     {
         $this->description=$description;//recordar que las propiedades de un objeto  no llevan el signo de dolar al usarlas
     }
-    public function getdescription()
+    public function getDescription()
     {
         return $this->description;
     }
