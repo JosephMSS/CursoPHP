@@ -1,5 +1,8 @@
 <?php
 namespace App\Models;
-class Job extends BasicElement{
+use  Illuminate\Database\Eloquent\Model;
+class Job extends Model{
+    protected $table = 'jobs';
+
 
 }
