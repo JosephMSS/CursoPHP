@@ -26,3 +26,8 @@ Generating autoload files
 ## Uso
 * > Podemos eliminar los require de la clase ```jobs.php``` y de todas las clases, univcamente requerimos los ```use```
 * >Solo agregar el ```require_once 'vendor\autoload.php';```
+## ORM
+Hector Benitez:
+ > Un ORM, que significa Object Relational Mapping, es un concepto en el cual vamos a crear dentro de nuestro código algunos modelos basados en las tablas de nuestra base de datos.
+ >   Una principal característica de un ORM es que hace más transparente las conexiones a PostgreSQL y MySQL, además nos protege de algunas vulnerabilidades de SQL y facilita algunas validaciones a la información.
+
