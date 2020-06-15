@@ -5,20 +5,10 @@ require_once 'vendor\autoload.php';
 // use App\Models\{Job, Project, Printable};
 use App\Models\Job;
 use App\Models\Project;
-use App\Models\Printable;
 
-$job1=new Job('PHP Developer','This is an awesome job!!!'/*,true,12*/);
-$job1->setvisible(true);
-$job1->setMonths(12);
-$job2=new Job('Nove Dev',' '/*,true,18*/);
-$job2->setvisible(true);
-$job2->setMonths(18);
+$jobs=Job::all();//Formas de hacer una peticion con eloquent
 $project1=new Project('Proyect 1','Decription1');
 $project1->setvisible(true);
-$jobs = [
-    $job1,
-    $job2
-];
 $projects=[
   $project1
 ];
@@ -36,16 +26,16 @@ function getDuration($months)
   }
   return $msj;
 }
-function printElement(Printable $job)
+function printElement($job)
 {
-  if($job->getVisible()==false){
-    return;
-  }
+  // if($job->getVisible()==false){
+  //   return;
+  // }
   echo '<li class="work-position">';
-               echo '<h5>'.$job->getTitle().'</h5>';
-            echo '<p>'.$job->getDescription().'</p>';
+               echo '<h5>'.$job->title.'</h5>';
+            echo '<p>'.$job->description.'</p>';
                 
-               echo '<p>'.getDuration($job->getMonths()).'</p>';
+               echo '<p>'.getDuration($job->months).'</p>';
 
                echo '<strong>Achievements:</strong>';
                echo '<ul>';
