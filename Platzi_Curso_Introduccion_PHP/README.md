@@ -48,3 +48,58 @@ Hector Benitez:
   * >Y se genera el ```composer.lock ```
 ## vendor
 * ><p style="color: red">La carpeta vendor no se suele almacenar en el repositorio</p>
+
+## Uso de Eloquent
+### Objeto
+* >Agregamos al objeto 
+```
+use Illuminate\Database\Eloquent\Model;
+```
+* > Para que herede de ```Model```
+* >Ejemplo: ```class Flight extends Model```
+* >Por ultimo agrgamos las variable protegida ```
+protected $table= '[Nombre de la tabla]';```
+
+### ADD e index
+* >Unicamente no se agrega la verificacion en el ```index.php```
+```<?php
+require_once 'vendor\autoload.php';
+use Illuminate\Database\Capsule\Manager as Capsule;
+use App\Models\Project;
+
+$capsule = new Capsule;
+
+$capsule->addConnection([
+  'driver'    => 'mysql',
+  'host'      => 'localhost',
+  'database'  => 'cursophp',
+  'username'  => 'root',
+  'password'  => '',
+  'charset'   => 'utf8',
+  'collation' => 'utf8_unicode_ci',
+  'prefix'    => '',
+  ]);
+  // Make this Capsule instance available globally via static methods... (optional)
+$capsule->setAsGlobal();
+
+// Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
+$capsule->bootEloquent();
+if(!empty($_POST))//verificacion para que post no se accione si esta vacio
+{
+    $project=new Project();
+    $project->title=$_POST["title"];
+    $project->description=$_POST["description"];
+    $project->save();
+}
+?>
+```
+### Extraer los datos
+```
+require_once 'vendor\autoload.php';
+//En caso de que se requiera usar namespaces se debe declarar en todas las clases y posteriormente se usa el use en donde se requiere usar las clases
+use App\Models\Job;
+use App\Models\Project;
+
+$jobs=Job::all();//Formas de hacer una peticion con eloquent
+$projects=Project::all();
+```

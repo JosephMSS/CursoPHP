@@ -7,11 +7,7 @@ use App\Models\Job;
 use App\Models\Project;
 
 $jobs=Job::all();//Formas de hacer una peticion con eloquent
-$project1=new Project('Proyect 1','Decription1');
-$project1->setvisible(true);
-$projects=[
-  $project1
-];
+$projects=Project::all();//Formas de hacer una peticion con eloquent
 function getDuration($months)
 {
   $msj=$months.'Months';

@@ -1,6 +1,9 @@
 <?php
+
 namespace App\Models;
-require_once 'BasicElement.php';
-class Project extends BasicElement{
+use Illuminate\Database\Eloquent\Model;
+class Project extends Model {
+    protected $table= 'project';
+    public $timestamps = false;
 } 
 ?>
