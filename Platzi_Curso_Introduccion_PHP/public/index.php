@@ -24,10 +24,11 @@ $capsule->setAsGlobal();
 
 // Setup the Eloquent ORM... (optional; unless you've used setEventDispatcher())
 $capsule->bootEloquent();
-$route=$_GET['route'] ?? '/'; //el operador ?? verifica que lla variable get exista y ademas tenga contenido, en caso de que este vacia agrega / c la variable $route
-if($route=='/')
-{
-    require_once '../index.php';
-}elseif ($route=='addJob') {
-    require_once '../addJob.php';
-}
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
+  $_SERVER,
+  $_GET,
+  $_POST,
+  $_COOKIE,
+  $_FILES
+);
+var_dump($request->getUri()->getPath());
