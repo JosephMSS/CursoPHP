@@ -37,6 +37,7 @@ class ComposerStaticInitfa2223272540a3bfb55f92182cdc001a
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
         ),
         'L' => 
@@ -53,6 +54,7 @@ class ComposerStaticInitfa2223272540a3bfb55f92182cdc001a
         ),
         'A' => 
         array (
+            'Aura\\Router\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -65,6 +67,10 @@ class ComposerStaticInitfa2223272540a3bfb55f92182cdc001a
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -94,6 +100,10 @@ class ComposerStaticInitfa2223272540a3bfb55f92182cdc001a
         'Illuminate\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/container',
+        ),
+        'Aura\\Router\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/router/src',
         ),
         'App\\' => 
         array (
