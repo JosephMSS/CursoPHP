@@ -35,15 +35,26 @@ $capsule->addConnection([
   $baseRoute='/CursoPHP/Platzi_Curso_Introduccion_PHP/';
   $routerContainer = new RouterContainer();
   $map = $routerContainer->getMap();
-  $map->get('index', $baseRoute , '../index.php');
+  $map->get('index', $baseRoute , [
+    'controller'=>'App\controllers\IndexController',
+    'action'=>'indexAction'
+
+  ]);
   $map->get('addJobs', $baseRoute.'add/job' , '../addJob.php');
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
 if(!$route){
   echo 'no route';
 }else{
-  require $route->handler;
+  $handlerData=$route->handler;
+  $controllerName=$handlerData['controller'];
+  $actionName=$handlerData['action'];
+  $controller= new $controllerName;
+  $controller->$actionName();
+  // var_dump($route->handler);
+
+  // require $route->handler;
 }
   ///var_dump($route->handler);
-  var_dump($request->getUri()->getPath());
+  // var_dump($request->getUri()->getPath());
   
