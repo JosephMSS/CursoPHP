@@ -1,9 +1,4 @@
-<?php
 
-  use App\Models\Job;
-  require_once ('jobs.php');
-  $name = 'Hector Benitez';
-?>
 <!doctype html>
 <html lang="en">
 

@@ -1,15 +1,3 @@
-<?php
-//codigo apra poser usar eloquent
-use App\Models\Job;
-
-if (!empty($_POST))
-{
-    $job=new Job();
-    $job->title=$_POST['title'];
-    $job->description=$_POST['description'];
-    $job->save();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

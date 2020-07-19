@@ -40,9 +40,49 @@ $capsule->addConnection([
     'action'=>'indexAction'
 
   ]);
-  $map->get('addJobs', $baseRoute.'add/job' , '../addJob.php');
+  
+  $map->get('addJobs', $baseRoute.'add/job' , [
+    'controller'=>'App\controllers\JobsController',
+    'action'=>'getAddJobAction'
+
+  ]);
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
+
+  function getDuration($months)
+  {
+    $msj=$months.'Months';
+    
+    if($months>12)
+    {
+      $msj=floor($months/12).'years, '.($months%12).'Months.';
+  
+    }if(($months%12)==0)
+    {
+      $msj= floor($months/12).' year';
+    }
+    return $msj;
+  }
+  function printElement($job)
+  {
+    // if($job->getVisible()==false){
+    //   return;
+    // }
+    echo '<li class="work-position">';
+                 echo '<h5>'.$job->title.'</h5>';
+              echo '<p>'.$job->description.'</p>';
+                  
+                 echo '<p>'.getDuration($job->months).'</p>';
+  
+                 echo '<strong>Achievements:</strong>';
+                 echo '<ul>';
+                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
+                  echo'</ul>';
+                echo'</li>';
+  }
+
 if(!$route){
   echo 'no route';
 }else{
@@ -55,6 +95,7 @@ if(!$route){
 
   // require $route->handler;
 }
+
   ///var_dump($route->handler);
   // var_dump($request->getUri()->getPath());
   

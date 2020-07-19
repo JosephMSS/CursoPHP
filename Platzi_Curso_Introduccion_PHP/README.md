@@ -103,3 +103,25 @@ use App\Models\Project;
 $jobs=Job::all();//Formas de hacer una peticion con eloquent
 $projects=Project::all();
 ```
+## Front controller
+## PSR7
+## Router
+
+## MCV Creado controllers 
+* Se agrega la carpeta views para almacenar las vistas
+* En app se crea la carpeta Controllers
+``namspace app\Controllers`` tratar de que se mantenga las mayuscuas en los namespace
+* Creamos una funcion ```indexAction{}```
+unicamente que envie un echo para comprobar que funcione
+* en el index que se encuentra en la carpeta public
+, en el router vamos a modificar la ruta de index
+```
+$map->get('index', $baseRoute , [
+    'controller'=>'App\controllers\IndexController';
+    'action'=>indexAction
+
+  ]);
+  ```
+  Verificamos por medio de un var dumb a handler funcione
+
+  * Declaramos una variable ```
