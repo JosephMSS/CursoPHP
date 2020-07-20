@@ -46,6 +46,11 @@ $capsule->addConnection([
     'action'=>'getAddJobAction'
 
   ]);
+  $map->post('saveJobs', $baseRoute.'add/job' , [
+    'controller'=>'App\controllers\JobsController',
+    'action'=>'getAddJobAction'
+
+  ]);
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
 
@@ -90,7 +95,7 @@ if(!$route){
   $controllerName=$handlerData['controller'];
   $actionName=$handlerData['action'];
   $controller= new $controllerName;
-  $controller->$actionName();
+  $controller->$actionName($request);
   // var_dump($route->handler);
 
   // require $route->handler;

@@ -10,7 +10,7 @@
 </head>
 <body>
     <h1>AddJob</h1>
-    <form action="addJob.php" method='POST'>
+    <form action="../add/job" method='POST'>
     <label for="title">Title</label>
     <input type="text" name='title' id='title'>
     <br>
