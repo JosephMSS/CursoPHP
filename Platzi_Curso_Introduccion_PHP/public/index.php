@@ -68,26 +68,7 @@ $capsule->addConnection([
     }
     return $msj;
   }
-  function printElement($job)
-  {
-    // if($job->getVisible()==false){
-    //   return;
-    // }
-    echo '<li class="work-position">';
-                 echo '<h5>'.$job->title.'</h5>';
-              echo '<p>'.$job->description.'</p>';
-                  
-                 echo '<p>'.getDuration($job->months).'</p>';
-  
-                 echo '<strong>Achievements:</strong>';
-                 echo '<ul>';
-                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                    echo '<li>Lorem ipsum dolor sit amet, 80% consectetuer adipiscing elit.</li>';
-                  echo'</ul>';
-                echo'</li>';
-  }
-
+ 
 if(!$route){
   echo 'no route';
 }else{
@@ -95,8 +76,9 @@ if(!$route){
   $controllerName=$handlerData['controller'];
   $actionName=$handlerData['action'];
   $controller= new $controllerName;
-  $controller->$actionName($request);
-  // var_dump($route->handler);
+  $response=$controller->$actionName($request);
+
+echo $response->getBody();  // var_dump($route->handler);
 
   // require $route->handler;
 }
