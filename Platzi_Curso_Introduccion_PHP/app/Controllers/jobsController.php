@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 use App\Models\Job;
-class  JobsController{
+class  JobsController extends BaseController{
     public function getAddJobAction($request)
     {
         // var_dump($request->getMethod(),"<hr>");
@@ -15,7 +15,7 @@ class  JobsController{
             $job->description=$postData['description'];
             $job->save();
         }
-        include '../views/addJob.php';
+        echo  $this->renderHTML('addJob.twig');
 
     }
 }
