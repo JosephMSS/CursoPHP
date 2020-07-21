@@ -15,7 +15,7 @@ class  JobsController extends BaseController{
             $job->description=$postData['description'];
             $job->save();
         }
-        echo  $this->renderHTML('addJob.twig');
+        return  $this->renderHTML('addJob.twig');
 
     }
 }
