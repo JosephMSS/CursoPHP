@@ -17,9 +17,16 @@ class  JobsController extends BaseController{
             try {
                 //code...
                 $jobValidator->assert($postData); // true) 
+                $files=$request->getUploadedFiles();
+                $logo=$files['logo'];
+                if($logo->getError()== UPLOAD_ERR_OK){
+                    $fileName=$logo->getClientFilename();
+                    $logo->moveTo("uploads/$fileName");
+                }
                 $job=new Job();
                 $job->title=$postData['title'];
                 $job->description=$postData['description'];
+                $job->image="uploads/$fileName";
                 $job->save();
                   $responsiveMessage='Saved';
             } catch (\Throwable $th) {

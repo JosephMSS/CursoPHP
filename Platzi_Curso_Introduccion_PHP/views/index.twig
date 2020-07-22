@@ -33,6 +33,10 @@
           <li class="work-position">
             <h5>{{ job.title}}</h5>
             <p>{{ job.description}}</p>
+            {% if (job.image  != null) %}
+            <img src="{{ job.image }}" alt="img" width="250" height="250">
+            {% endif %}
+            
           </li>
           {% endfor %}
         
@@ -41,14 +45,7 @@
       </div>
       <div>
           <h3 class="border-bottom-gray">Projects</h3>
-          <ul>
-          <?php
-            for($idx=0;$idx<count($projects);$idx++)
-            {
-              printElement($projects[$idx]);
-            }
-          ?>
-          </ul>
+      
           <div class="project">
               <h5>Project X</h5>
               <div class="row">

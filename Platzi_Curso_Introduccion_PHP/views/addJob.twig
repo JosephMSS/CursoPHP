@@ -4,14 +4,15 @@
 <div class="alert alert-primary" role="alert">
 {{ responsiveMessage }}
 </div>
-<form action="../add/job" method='POST'>
+{# se utiliza un tipo especial de encoding cuajndo se quiere subir archivos #}
+<form action="../add/job" method='POST' enctype="multipart/form-data">
   <label for="title">Title</label>
   <input type="text" name='title' id='title'>
   <br>
   <label for="description">Description</label>
   <input type="text" name='description' id='description'>
   <br>
-
+  <input type="file" name="logo"><br>
   <input type="submit" value="Save">
 </form>
 {% endblock %}
