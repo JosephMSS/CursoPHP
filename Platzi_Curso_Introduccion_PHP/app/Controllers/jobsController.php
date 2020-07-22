@@ -11,22 +11,25 @@ class  JobsController extends BaseController{
         if ($request->getMethod()=='POST')
         {
             $postData=$request->getParsedBody();
-
+ 
             $jobValidator = v::key('title', v::stringType()->notEmpty())
                   ->key('description', v::stringType()->notEmpty());
+
             try {
                 //code...
                 $jobValidator->assert($postData); // true) 
                 $files=$request->getUploadedFiles();
                 $logo=$files['logo'];
+                $routeImg='';
                 if($logo->getError()== UPLOAD_ERR_OK){
                     $fileName=$logo->getClientFilename();
-                    $logo->moveTo("uploads/$fileName");
+                    $routeImg="uploads/$fileName";
+                    $logo->moveTo($routeImg);
                 }
                 $job=new Job();
                 $job->title=$postData['title'];
                 $job->description=$postData['description'];
-                $job->image="uploads/$fileName";
+                $job->image=$routeImg;
                 $job->save();
                   $responsiveMessage='Saved';
             } catch (\Throwable $th) {

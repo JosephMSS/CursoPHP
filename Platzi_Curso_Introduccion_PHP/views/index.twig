@@ -33,7 +33,7 @@
           <li class="work-position">
             <h5>{{ job.title}}</h5>
             <p>{{ job.description}}</p>
-            {% if (job.image  != null) %}
+            {% if (job.image  != '') %}
             <img src="{{ job.image }}" alt="img" width="250" height="250">
             {% endif %}
             
