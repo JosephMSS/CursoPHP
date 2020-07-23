@@ -62,6 +62,17 @@ $capsule->addConnection([
     'action'=>'getAddUserAction'
 
   ]);
+
+  $map->get('loginForm', $baseRoute.'login' , [
+    'controller'=>'App\controllers\AuthController',
+    'action'=>'getLogin'
+
+  ]);
+  $map->post('login', $baseRoute.'auth' , [
+    'controller'=>'App\controllers\AuthController',
+    'action'=>'postLogin'
+
+  ]);
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
 
@@ -89,11 +100,7 @@ if(!$route){
   $controller= new $controllerName;
   $response=$controller->$actionName($request);
 
-echo $response->getBody();  // var_dump($route->handler);
-
-  // require $route->handler;
+echo $response->getBody();  
 }
 
-  ///var_dump($route->handler);
-  // var_dump($request->getUri()->getPath());
   
