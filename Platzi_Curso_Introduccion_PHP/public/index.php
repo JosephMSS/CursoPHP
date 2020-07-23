@@ -51,6 +51,17 @@ $capsule->addConnection([
     'action'=>'getAddJobAction'
 
   ]);
+  // Seccion de users
+  $map->get('addUsers', $baseRoute.'add/user' , [
+    'controller'=>'App\controllers\UserController',
+    'action'=>'getAddUserAction'
+
+  ]);
+  $map->post('saveUsers', $baseRoute.'add/user' , [
+    'controller'=>'App\controllers\UserController',
+    'action'=>'getAddUserAction'
+
+  ]);
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
 
