@@ -2,32 +2,37 @@
 namespace App\Controllers;
 use App\Models\User;
 use Respect\Validation\Validator as v;
+use Laminas\Diactoros\Response\RedirectResponse;
 
 class  AuthController extends BaseController{
    
     public function getLogin(){
-        return  $this->renderHTML('login.twig',[
-            // 'responsiveMessage'=>$responsiveMessage
-            ]);
+        return  $this->renderHTML('login.twig');
     }
     public function postLogin($request)
     {
-
         $postData=$request->getParsedBody();
+        $responsiveMessage=null;
         $user=User::where('email',$postData['email'])->first();
         if ($user) {
             if(\password_verify($postData['password'],$user->password))
             {
-                echo 'correct';
+                return new RedirectResponse('admin');
+
+
             }
             else{
                 echo 'incorrect';
+                $responsiveMessage='Bad credentials';
 
             }
             echo " fount";
         }else{
-            echo "not fount";
+            $responsiveMessage='Bad credentials';
         }
+        return $this->renderHTML('login.twig',[
+            'responsiveMessage'=>$responsiveMessage
+              ]);
     }
 }
     ?>
