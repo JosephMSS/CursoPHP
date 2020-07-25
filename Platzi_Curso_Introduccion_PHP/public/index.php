@@ -4,6 +4,7 @@ ini_set('display_starup_errors',1);
 error_reporting(E_ALL);
 //unicamente se utilizan cuando estamos desarrallando
 require_once '..\vendor\autoload.php';
+session_start();
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Models\Job;
 use Aura\Router\RouterContainer;
@@ -73,6 +74,18 @@ $capsule->addConnection([
     'action'=>'postLogin'
 
   ]);
+  $map->get('admin', $baseRoute.'admin' , [
+    'controller'=>'App\controllers\AdminController',
+    'action'=>'getIndex',
+    'auth'=>true
+
+  ]);
+  $map->get('logout', $baseRoute.'logout' , [
+    'controller'=>'App\controllers\AuthController',
+    'action'=>'getLogout'
+    // 'auth'=>true
+
+  ]);
   $matcher = $routerContainer->getMatcher();
   $route = $matcher->match($request);
 
@@ -97,8 +110,15 @@ if(!$route){
   $handlerData=$route->handler;
   $controllerName=$handlerData['controller'];
   $actionName=$handlerData['action'];
+  $needsAuth=$handlerData['auth'] ?? false;
   $controller= new $controllerName;
   $response=$controller->$actionName($request);
+  $sessionUserId=$_SESSION['userId'] ?? null;
+  if( $needsAuth && !$sessionUserId  )
+  {
+    echo 'Protecterd route';
+    die;
+  }
 
   foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {

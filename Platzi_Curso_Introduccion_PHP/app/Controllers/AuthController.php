@@ -9,6 +9,7 @@ class  AuthController extends BaseController{
     public function getLogin(){
         return  $this->renderHTML('login.twig');
     }
+   
     public function postLogin($request)
     {
         $postData=$request->getParsedBody();
@@ -17,14 +18,15 @@ class  AuthController extends BaseController{
         if ($user) {
             if(\password_verify($postData['password'],$user->password))
             {
+                $_SESSION['userId']=$user->id;
                 return new RedirectResponse('admin');
 
-
+                
             }
             else{
                 echo 'incorrect';
                 $responsiveMessage='Bad credentials';
-
+                
             }
             echo " fount";
         }else{
@@ -32,7 +34,12 @@ class  AuthController extends BaseController{
         }
         return $this->renderHTML('login.twig',[
             'responsiveMessage'=>$responsiveMessage
-              ]);
+            ]);
+        }
+        
+        public function getLogout(){
+            unset($_SESSION['userId']);
+            return new RedirectResponse('login');
+        }
     }
-}
     ?>
