@@ -44,7 +44,8 @@ $capsule->addConnection([
   
   $map->get('addJobs', $baseRoute.'add/job' , [
     'controller'=>'App\controllers\JobsController',
-    'action'=>'getAddJobAction'
+    'action'=>'getAddJobAction',
+    'auth'=>true
 
   ]);
   $map->post('saveJobs', $baseRoute.'add/job' , [
@@ -55,7 +56,8 @@ $capsule->addConnection([
   // Seccion de users
   $map->get('addUsers', $baseRoute.'add/user' , [
     'controller'=>'App\controllers\UserController',
-    'action'=>'getAddUserAction'
+    'action'=>'getAddUserAction',
+    'auth'=>true
 
   ]);
   $map->post('saveUsers', $baseRoute.'add/user' , [
@@ -114,6 +116,7 @@ if(!$route){
   $controller= new $controllerName;
   $response=$controller->$actionName($request);
   $sessionUserId=$_SESSION['userId'] ?? null;
+  var_dump($needsAuth, !$sessionUserId);
   if( $needsAuth && !$sessionUserId  )
   {
     echo 'Protecterd route';
