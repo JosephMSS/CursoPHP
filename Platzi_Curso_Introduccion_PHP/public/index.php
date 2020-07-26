@@ -5,6 +5,11 @@ error_reporting(E_ALL);
 //unicamente se utilizan cuando estamos desarrallando
 require_once '..\vendor\autoload.php';
 session_start();
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/..');
+$dotenv->load();
+
+// echo $_ENV['DB_HOST'];
+// die;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Models\Job;
 use Aura\Router\RouterContainer;
@@ -13,10 +18,10 @@ $capsule = new Capsule;
 
 $capsule->addConnection([
   'driver'    => 'mysql',
-  'host'      => 'localhost',
-  'database'  => 'cursophp',
-  'username'  => 'root',
-  'password'  => '',
+  'host'      => $_ENV['DB_HOST'],
+  'database'  => $_ENV['DB_NAME'],
+  'username'  => $_ENV['DB_USER'],
+  'password'  => $_ENV['DB_PASS'],
   'charset'   => 'utf8',
   'collation' => 'utf8_unicode_ci',
   'prefix'    => '',
