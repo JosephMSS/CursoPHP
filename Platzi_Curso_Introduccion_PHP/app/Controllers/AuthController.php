@@ -41,5 +41,8 @@ class  AuthController extends BaseController{
             unset($_SESSION['userId']);
             return new RedirectResponse('login');
         }
+        public function getProtected(){
+            return new RedirectResponse('../login');
+        }
     }
     ?>

@@ -113,15 +113,15 @@ if(!$route){
   $controllerName=$handlerData['controller'];
   $actionName=$handlerData['action'];
   $needsAuth=$handlerData['auth'] ?? false;
-  $controller= new $controllerName;
-  $response=$controller->$actionName($request);
   $sessionUserId=$_SESSION['userId'] ?? null;
-  var_dump($needsAuth, !$sessionUserId);
   if( $needsAuth && !$sessionUserId  )
   {
-    echo 'Protecterd route';
-    die;
+    $controllerName='App\controllers\AuthController';
+    $actionName='getProtected';
   }
+  $controller= new $controllerName;
+  $response=$controller->$actionName($request);
+  var_dump($needsAuth, !$sessionUserId);
 
   foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {
