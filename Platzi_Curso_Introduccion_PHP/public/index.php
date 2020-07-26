@@ -126,7 +126,7 @@ if(!$route){
   }
   $controller= new $controllerName;
   $response=$controller->$actionName($request);
-  var_dump($needsAuth, !$sessionUserId);
+  // var_dump($needsAuth, !$sessionUserId);
 
   foreach ($response->getHeaders() as $name => $values) {
     foreach ($values as $value) {
